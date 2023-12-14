@@ -54,7 +54,10 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
-      "options": {"port": 4201},
+      "options": {"port": 4201,
+      "options": {
+        "proxyConfig": "apps/frontend/admin/proxy.conf.json"
+      }},
       "configurations": {
         "production": {
           "buildTarget": "admin:build:production"
