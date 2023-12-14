@@ -1,31 +1,31 @@
 {
-  "name": "frontend-client",
+  "name": "admin",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "blog",
-  "sourceRoot": "apps/frontend/client/src",
+  "sourceRoot": "apps/frontend/admin/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/frontend/client",
-        "index": "apps/frontend/client/src/index.html",
-        "browser": "apps/frontend/client/src/main.ts",
+        "outputPath": "dist/apps/frontend/admin",
+        "index": "apps/frontend/admin/src/index.html",
+        "browser": "apps/frontend/admin/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/frontend/client/tsconfig.app.json",
+        "tsConfig": "apps/frontend/admin/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
-          "apps/frontend/client/src/favicon.ico",
-          "apps/frontend/client/src/assets"
+          "apps/frontend/admin/src/favicon.ico",
+          "apps/frontend/admin/src/assets"
         ],
-        "styles": ["apps/frontend/client/src/styles.scss"],
+        "styles": ["apps/frontend/admin/src/styles.scss"],
         "scripts": [],
-        "server": "apps/frontend/client/src/main.server.ts",
+        "server": "apps/frontend/admin/src/main.server.ts",
         "prerender": true,
         "ssr": {
-          "entry": "apps/frontend/client/server.ts"
+          "entry": "apps/frontend/admin/server.ts"
         }
       },
       "configurations": {
@@ -54,23 +54,24 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {"port": 4201,
+      "options": {
+        "proxyConfig": "apps/frontend/admin/proxy.conf.json"
+      }},
       "configurations": {
         "production": {
-          "buildTarget": "frontend-client:build:production"
+          "buildTarget": "admin:build:production"
         },
         "development": {
-          "buildTarget": "frontend-client:build:development"
+          "buildTarget": "admin:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "proxyConfig": "apps/frontend/client/proxy.conf.json"
-      }
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "frontend-client:build"
+        "buildTarget": "admin:build"
       }
     },
     "lint": {
@@ -81,7 +82,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/frontend/client/jest.config.ts"
+        "jestConfig": "apps/frontend/admin/jest.config.ts"
       }
     }
   }
