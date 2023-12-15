@@ -2,7 +2,10 @@
   "name": "@blog/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "db:start": "cp .env ./docker-compose && cd docker-compose && docker-compose up -d",
+    "db:stop": "cd docker-compose && docker-compose stop && rm .env"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~17.0.0",
@@ -38,6 +41,7 @@
     "@angular/language-service": "~17.0.0",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/testing": "^10.0.2",
+    "@nestjs/typeorm": "^10.0.1",
     "@nx/eslint": "17.2.3",
     "@nx/eslint-plugin": "17.2.3",
     "@nx/jest": "17.2.4",
@@ -64,10 +68,12 @@
     "jest-preset-angular": "~13.1.4",
     "jsonc-eslint-parser": "^2.1.0",
     "nx": "17.2.3",
+    "pg": "^8.11.3",
     "prettier": "^2.6.2",
     "react-refresh": "^0.10.0",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
+    "typeorm": "^0.3.17",
     "typescript": "~5.2.2",
     "url-loader": "^4.1.1"
   }
